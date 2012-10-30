@@ -21,7 +21,7 @@ You'll  probably want something like the above, only enabling the agent in produ
 Now you can begin to use Pirate Metrics to track your application.
 
 ```sh
-PM.acquisition('joe@example.com')    # new user acquisition
+PM.acquisition({ :email => 'joe@example.com'})    # new user acquisition
 ```
 
 **Note**: For your app's safety, the agent is meant to isolate your app from any problems our service might suffer. If it is unable to connect to the service, it will discard data after reaching a low memory threshold.
