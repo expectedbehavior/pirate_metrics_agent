@@ -21,7 +21,20 @@ You'll  probably want something like the above, only enabling the agent in produ
 Now you can begin to use Pirate Metrics to track your application.
 
 ```sh
-PM.acquisition({ :email => 'joe@example.com'})    # new user acquisition
+# new user acquisition
+PM.acquisition({ :email => 'joe@example.com'}) 
+
+# joe activates
+PM.activation({ :email => 'joe@example.com'})
+
+# joe uses your product many times
+PM.retention({ :email => 'joe@example.com'})
+
+# joe gets someone else to sign up
+PM.referral({ :customer_email => 'joe@example.com', :referree_email => 'bob@bigmoney.example.com'})
+
+# joe pays
+PM.revenue({ :email => 'joe@example.com', :amount_in_cents => 100})
 ```
 
 **Note**: For your app's safety, the agent is meant to isolate your app from any problems our service might suffer. If it is unable to connect to the service, it will discard data after reaching a low memory threshold.
