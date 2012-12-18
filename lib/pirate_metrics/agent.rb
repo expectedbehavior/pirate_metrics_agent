@@ -203,6 +203,7 @@ module PirateMetrics
         @failures = 0
         logger.info "Starting thread"
         @thread = Thread.new do
+          sleep 0 #yield back before processing anything
           run_worker_loop
         end
       end
