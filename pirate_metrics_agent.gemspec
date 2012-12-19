@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version     = PirateMetrics::VERSION
   s.authors     = ["Elijah Miller", "Christopher Zelenak", "Kristopher Chambers", "Matthew Hassfurder", "Expected Behavior"]
   s.email       = ["support@piratemetrics.com"]
-  s.homepage    = "http://github.com/expectedbehavior/pirate_metrics_agent"
+  s.homepage    = "http://piratemetrics.com"
   s.summary     = %q{Agent for reporting data to piratemetrics.com}
   s.description = %q{Get to know your customers.}
 
