@@ -143,6 +143,7 @@ module PirateMetrics
           end
         end
       end
+      @thread = nil
     end
 
     private
