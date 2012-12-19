@@ -401,9 +401,14 @@ describe PirateMetrics::Agent, "connection problems" do
   it "should send commands in a process that bypasses at_exit when using #cleanup" do
     @server = TestServer.new
     @agent = @server.fresh_agent
-    if pid = fork { @agent.acquisition({ :email => "test@example.com"}); @agent.cleanup; exit! }
+    if pid = fork do
+        @agent.acquisition({ :email => "test1@example.com"})
+        @agent.acquisition({ :email => "test2@example.com"})
+        @agent.cleanup
+        exit!
+      end
       Process.wait(pid)
-      @server.acquisitions.size.should == 1
+      @server.acquisitions.size.should == 2
     end
   end
 end

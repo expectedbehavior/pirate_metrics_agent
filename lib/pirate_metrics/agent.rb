@@ -132,16 +132,14 @@ module PirateMetrics
       if running?
         logger.info "Cleaning up agent, queue size: #{@queue.size}, thread running: #{@thread.alive?}"
         @allow_reconnect = false
-        if @queue.size > 0
-          queue_metric('exit')
-          begin
-            with_timeout(EXIT_FLUSH_TIMEOUT) { @thread.join }
-          rescue Timeout::Error
-            if @queue.size > 0
-              logger.error "Timed out working agent thread on exit, dropping #{@queue.size} metrics"
-            else
-              logger.error "Timed out PirateMetrics Agent, exiting"
-            end
+        queue_metric('exit')
+        begin
+          with_timeout(EXIT_FLUSH_TIMEOUT) { @thread.join }
+        rescue Timeout::Error
+          if @queue.size > 0
+            logger.error "Timed out working agent thread on exit, dropping #{@queue.size} metrics"
+          else
+            logger.error "Timed out PirateMetrics Agent, exiting"
           end
         end
       end
@@ -231,6 +229,7 @@ module PirateMetrics
           else
             logger.debug "Sending: #{metric} -> #{payload.inspect}"
             result = @piratemetrics.post("/api/v1/#{metric}s", { :api_key => @api_key, :data => payload})
+            logger.debug "Sent returned with status code #{result.status}"
           end
           metric = payload = options = nil
         rescue Exception => err
