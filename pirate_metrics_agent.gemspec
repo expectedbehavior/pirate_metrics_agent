@@ -4,7 +4,7 @@ require "pirate_metrics/version"
 Gem::Specification.new do |s|
   s.name        = "pirate_metrics_agent"
   s.version     = PirateMetrics::VERSION
-  s.authors     = ["Elijah Miller", "Christopher Zelenak", "Kristopher Chambers", "Matthew Hassfurder", "Expected Behavior"]
+  s.authors     = ["Fastest Forward", "Expected Behavior"]
   s.email       = ["support@piratemetrics.com"]
   s.homepage    = "http://piratemetrics.com"
   s.summary     = %q{Agent for reporting data to piratemetrics.com}

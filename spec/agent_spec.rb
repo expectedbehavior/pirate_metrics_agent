@@ -93,10 +93,10 @@ describe PirateMetrics::Agent, "acquisitions" do
   end
 
   it "should report an acquisition using the array form" do
-    @agent.acquisition([{:email => "test1@example.com"}, { :email => "test2@example.com"}])
+    @agent.acquisition([{:email => "test1@example.com", :referrer => "awesome.com"}, { :email => "test2@example.com", :referrer => "other.com"}])
     wait
-    @server.acquisitions.first.should == { "email" => "test1@example.com"}
-    @server.acquisitions.last.should == { "email" => "test2@example.com"}
+    @server.acquisitions.first.should == { "email" => "test1@example.com", "referrer" => "awesome.com"}
+    @server.acquisitions.last.should == { "email" => "test2@example.com", "referrer" => "other.com"}
   end
 
   it "should be able to report acquisitions synchronously" do
@@ -124,9 +124,9 @@ describe PirateMetrics::Agent, "activations" do
   end
 
   it "should report an activation using the hash form" do
-    @agent.activation({:email => "test@example.com"})
+    @agent.activation({:email => "test@example.com", :referrer => "awesome.com"})
     wait
-    @server.activations.last.should == { "email" => "test@example.com"}
+    @server.activations.last.should == { "email" => "test@example.com", "referrer" => "awesome.com"}
   end
 
   it "should report an activation using the array form" do
@@ -161,9 +161,9 @@ describe PirateMetrics::Agent, "retentions" do
   end
 
   it "should report an retention using the hash form" do
-    @agent.retention({:email => "test@example.com"})
+    @agent.retention({:email => "test@example.com", :referrer => "awesome.com"})
     wait
-    @server.retentions.last.should == { "email" => "test@example.com"}
+    @server.retentions.last.should == { "email" => "test@example.com", "referrer" => "awesome.com"}
   end
 
   it "should report an retention using the array form" do
